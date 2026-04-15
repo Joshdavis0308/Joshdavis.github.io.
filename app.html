@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddle Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .page-nav {
+            background-color: #212529;
+            padding: 0.75rem 1rem;
+            text-align: center;
+        }
+        .page-nav a {
+            color: #ffffff;
+            margin: 0 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .page-nav a:hover {
+            text-decoration: underline;
+        }
+        #riddle-page {
+            padding: 2rem 1rem;
+        }
+        #riddle-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #answer {
+            display: none;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-nav">
+        <a href="index.html">Home</a>
+        <a href="resume.html">Resume</a>
+        <a href="scratch.html">Scratch Page</a>
+    </div>
+    <div id="riddle-page">
+        <div id="riddle-container">
+        <h1>Riddle Generator</h1>
+        <p id="riddle">Click the button to get a riddle!</p>
+        <button onclick="generateRiddle()">Generate Riddle</button>
+        <button onclick="showAnswer()">Show Answer</button>
+        <p id="answer"></p>
+    </div>
+    </div>
+
+    <script>
+        const riddles = [
+            { question: "What has keys but can't open locks?", answer: "A piano" },
+            { question: "What comes once in a minute, twice in a moment, but never in a thousand years?", answer: "The letter M" },
+            { question: "I speak without a mouth and hear without ears. I have no body, but I come alive with the wind. What am I?", answer: "An echo" },
+            { question: "What has a head, a tail, is brown, and has no legs?", answer: "A penny" },
+            { question: "What can you break, even if you never pick it up or touch it?", answer: "A promise" }
+        ];
+
+        let currentRiddle = null;
+
+        function generateRiddle() {
+            const randomIndex = Math.floor(Math.random() * riddles.length);
+            currentRiddle = riddles[randomIndex];
+            document.getElementById('riddle').textContent = currentRiddle.question;
+            document.getElementById('answer').style.display = 'none';
+            document.getElementById('answer').textContent = '';
+        }
+
+        function showAnswer() {
+            if (currentRiddle) {
+                document.getElementById('answer').textContent = "Answer: " + currentRiddle.answer;
+                document.getElementById('answer').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
